@@ -106,3 +106,20 @@ nav .nav-list-container {
 .nav-list-container li:hover {
     border-bottom: 1px solid #6a95f5;
 }
+
+#comments-table th, td {
+  text-align: justify;
+}
+
+#comments-form ul {
+    list-style-type: none;
+}
+
+#comments-form .form-input {
+  width: 30em;
+}
+
+#comments-form .comment {
+  height: 10em;
+  resize: none;
+}
