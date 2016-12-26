@@ -53,7 +53,7 @@ function getComments(url, offset, perPage) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE) {
       if (this.status == 200) {
-        comments = this.responseText;
+        comments = JSON.parse(this.responseText);
       }
       else {
         comments = [];
