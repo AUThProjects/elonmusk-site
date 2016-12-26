@@ -154,6 +154,7 @@ function submitListenerCallback(e) {
   // Check form related data
   var form = document.getElementById("comments-form");
   submitNewComment(new FormData(form), '/php/comments/new.php', function() { getComments('/php/comments/list.php', null, null, displayComments); });
+  form.reset();
 }
 
 /**
