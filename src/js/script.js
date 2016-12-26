@@ -87,7 +87,7 @@ function createCommentsTable(comments) {
   for (comment of comments) {
     var tableLine = document.createElement('tr');
     var tableEmailColumn = document.createElement('td');
-    tableEmailColumn.appendChild(document.createTextNode(comment.emailAddress));
+    tableEmailColumn.appendChild(document.createTextNode(comment.email));
     tableLine.appendChild(tableEmailColumn);
     var tableCommentColumn = document.createElement('td');
     tableCommentColumn.appendChild(document.createTextNode(comment.comment));
