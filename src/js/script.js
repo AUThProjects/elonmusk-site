@@ -39,6 +39,7 @@ function emailCheckCallback(e) {
  * @param url: The url to which results are queried from.
  * @param offset: Offset of the results.
  * @param perPage: Results per page.
+ * @param callback: The function to be called whne the AJAX call completes.
  * @return The comments returned from the backend.
  */
 function getComments(url, offset, perPage, callback) {
@@ -117,6 +118,40 @@ function displayComments(comments) {
 }
 
 /**
+ * Function submitting a new comment through an AJAX call.
+ * @param comment: The comment to be submitted.
+ * @param url: The backend endpoint for the post request.
+ * @param callback: The function to be called on completion.
+ */
+function submitNewComment(comment, url, callback) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == XMLHttpRequest.DONE) {
+      if (this.status == 200) {
+        callback(comments);
+      }
+      else {
+        console.log("Error on submit.")
+      }
+    }
+  };
+  // xhttp.open("GET", url+"?"+perPage+'?'+offset, true);
+  xhttp.open("POST", url, true);
+  xhttp.send(comment);
+}
+
+/**
+ * Callback function overriding default submit action on submit comment form
+ * @param e: event
+ */
+function submitListenerCallback(e) {
+  e.preventDefault();
+  // Check form related data
+  var form = document.getElementById("comments-form");
+  submitNewComment(new FormData(form), '/php/comments/new.php', displayComments);
+}
+
+/**
  * Remove messages to show when JS is disabled.
  */
 function removeJSDisabledMessages() {
@@ -133,6 +168,10 @@ var emailInputs = document.getElementsByClassName('email-input');
 for (emailInput of emailInputs) {
   emailInput.addEventListener('input', emailCheckCallback, false);
 }
+
+// Register submit button listener
+var submitButton = document.getElementById('submit-comment-btn');
+submitButton.addEventListener('click', submitListenerCallback, false);
 
 // Populate the comments section
 getComments('/php/comments/list.php', null, null, displayComments);
