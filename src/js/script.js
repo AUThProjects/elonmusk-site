@@ -41,7 +41,7 @@ function emailCheckCallback(e) {
  * @param perPage: Results per page.
  * @return The comments returned from the backend.
  */
-function getComments(url, offset, perPage) {
+function getComments(url, offset, perPage, callback) {
 
   var comments = [
     // {emailAddress: "dummy@example.com", comment: "Some Comment"},
@@ -54,6 +54,7 @@ function getComments(url, offset, perPage) {
     if (this.readyState == XMLHttpRequest.DONE) {
       if (this.status == 200) {
         comments = JSON.parse(this.responseText);
+        callback(comments);
       }
       else {
         comments = [];
@@ -134,4 +135,4 @@ for (emailInput of emailInputs) {
 }
 
 // Populate the comments section
-displayComments(getComments('/php/comments/list.php', null, null));
+getComments('/php/comments/list.php', null, null, displayComments);
