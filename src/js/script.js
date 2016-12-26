@@ -60,7 +60,8 @@ function getComments(url, offset, perPage) {
       }
     }
   };
-  xhttp.open("GET", url+"?"+perPage+'?'+offset, true);
+  // xhttp.open("GET", url+"?"+perPage+'?'+offset, true);
+  xhttp.open("GET", url, true);
   xhttp.send();
 
   return comments;
