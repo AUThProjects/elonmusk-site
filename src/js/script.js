@@ -105,8 +105,13 @@ function createCommentsTable(comments) {
 function displayComments(comments) {
   // document.getElementById('comments-js-disabled').remove();
   if (comments.length) {
-    commentsTable = createCommentsTable(comments);
-    document.getElementById('comments-list-container').appendChild(commentsTable);
+    var commentsTable = createCommentsTable(comments);
+    var existentCommentsTable = document.getElementById('comments-table');
+    if (existentCommentsTable) {
+      document.getElementById('comments-list-container').replaceChild(commentsTable, existentCommentsTable);
+    }
+    else
+      document.getElementById('comments-list-container').appendChild(commentsTable);
   }
   else {
     var emptyListParagraph = document.createElement("p");
