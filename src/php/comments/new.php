@@ -1,6 +1,6 @@
 <?php
     include("../connect.php");
-
+    print_r($_POST);
     $email = $_POST["email"];
     if (!isset($email)) {
         $email = "";
@@ -10,8 +10,7 @@
     $statement = $pdo->prepare(
         "INSERT INTO comments(email, comment)
         VALUES(:email, :comment)");
-    $statement->execute(array(
-        "email" => $email,
-        "comment" => $comment
-    ));
+    $statement->bindParam(":email", $email);
+    $statement->bindParam(":comment", $comment);
+    $statement->execute();
 ?>

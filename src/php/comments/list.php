@@ -6,6 +6,6 @@
         "SELECT * FROM comments");
     $statement->execute();
     $results = $statement->fetchAll();
-    echo JSON.stringify($results);
+    echo json_encode($results);
     
 ?>
