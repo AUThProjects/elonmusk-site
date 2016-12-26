@@ -128,7 +128,7 @@ function submitNewComment(comment, url, callback) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE) {
       if (this.status == 200) {
-        callback(comments);
+        callback();
       }
       else {
         console.log("Error on submit.")
@@ -148,7 +148,7 @@ function submitListenerCallback(e) {
   e.preventDefault();
   // Check form related data
   var form = document.getElementById("comments-form");
-  submitNewComment(new FormData(form), '/php/comments/new.php', displayComments);
+  submitNewComment(new FormData(form), '/php/comments/new.php', function() { getComments('/php/comments/list.php', null, null, displayComments); });
 }
 
 /**
