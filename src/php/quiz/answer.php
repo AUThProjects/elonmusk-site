@@ -13,6 +13,9 @@
     $statement->execute();
 
     $correctAnswerId = $statement->fetch();
-    echo $correctAnswerId == $answer;
+
+    $result=array();
+    $result["result"] =$correctAnswerId["correctanswerid"] == $answer;
+    echo json_encode($result);
 
 ?>
