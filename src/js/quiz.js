@@ -97,7 +97,7 @@ function showAnswerFeedback(isCorrect) {
   feedbackContainer.innerHTML = '<p>' + feedbackText + '</p>';
   var form = document.getElementById('quiz-form');
   if (!document.getElementById('feedback-container'))
-    form.insertBefore(feedbackContainer);
+    form.insertBefore(feedbackContainer, form.childNodes[0]);
 }
 
 var questionsSeen = [];
