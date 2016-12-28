@@ -1,28 +1,31 @@
 <?php
 
     include("../connect.php");
-
     if (isset($_GET["questionsSeen"])) {
         $questions_seen = $_GET["questionsSeen"];
+        
+        $query = 
+            "SELECT id, question
+            FROM quizQuestions 
+            WHERE id NOT IN ($questions_seen)";
     }
     else {
-        $questions_seen = "";
+        $query = 
+            "SELECT id, question
+            FROM quizQuestions";
     }
 
-    $statement = $pdo->prepare(
-        "SELECT id, question
-        FROM quizQuestions 
-        WHERE id NOT IN ($questions_seen)");
+    $statement = $pdo->prepare();
     $statement->execute();
     $results = $statement->fetchAll();
-    $random_number = rand(0, count($results));
+    $random_number = rand(0, count($results) - 1);
     $question = $results[$random_number];
 
     $statement = $pdo->prepare(
         "SELECT quizAnswers.id, answer
         FROM questionsanswers 
         JOIN quizAnswers ON questionsAnswers.aid=quizAnswers.id 
-        WHERE questionsAnswers.qid=$question->id");
+        WHERE questionsAnswers.qid=$question['id']");
     $statement->execute();
     $answers = $statement->fetchAll();
 
