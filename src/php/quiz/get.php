@@ -19,9 +19,10 @@
     $question = $results[$random_number];
 
     $statement = $pdo->prepare(
-        "SELECT id, answer
-        FROM answers 
-        WHERE id=$question->id");
+        "SELECT quizAnswers.id, answer
+        FROM questionsanswers 
+        JOIN quizAnswers ON questionsAnswers.aid=quizAnswers.id 
+        WHERE questionsAnswers.qid=$question->id");
     $statement->execute();
     $answers = $statement->fetchAll();
 
