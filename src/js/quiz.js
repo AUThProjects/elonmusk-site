@@ -9,15 +9,19 @@ function getQuestion(url, callback) {
     if (this.readyState == XMLHttpRequest.DONE) {
       if (this.status == 200) {
         questionObj = JSON.parse(this.responseText);
-        // TODO: Register the question object here.
-        callback(questionObj.question.question, questionObj.answers.map(l => l.answer));
+        currentQuestionObject = questionObj;
+        questionsSeen.push(questionObj.id);
+        callback(questionObj.question.question, questionObj.answers);
       }
       else {
         console.log('Some error happened while getting questions');
       }
     }
   };
-  xhttp.open("GET", url, true);
+  if (questionsSeen.length)
+    xhttp.open("GET", url+'?questionsSeen='+questionsSeen.join(','), true);
+  else
+    xhttp.open("GET", url, true);
   xhttp.send();
 }
 
@@ -27,21 +31,21 @@ function getQuestion(url, callback) {
  * @param url: The API endpoint.
  * @param callback: The function to call on completion of the request.
  */
-function getCorrectAnswer(question_id, url, callback) {
+function getCorrectAnswer(questionId, userQuizResponse, url, callback) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE) {
       if (this.status == 200) {
-        correctAnswer = JSON.parse(this.responseText);
-        // TODO: Insert callback here
+        response = JSON.parse(this.responseText);
+        callback(response.result);
       }
       else {
         console.log('Some error happened while getting questions');
       }
     }
   };
-  xhttp.open("POST", url, true);
-  xhttp.send(question_id);
+  xhttp.open("GET", url+'?questionId='+questionId+'&answer='+userQuizResponse, true);
+  xhttp.send();
 }
 
 /**
@@ -63,14 +67,55 @@ function populateQuestion(question, answers) {
         var inputElmnt = document.createElement('input');
         inputElmnt.type = 'radio';
         inputElmnt.name = 'answer';
-        inputElmnt.value = a;
+        inputElmnt.value = a.id;
         li.appendChild(inputElmnt);
-        li.appendChild(document.createTextNode(a));
+        li.appendChild(document.createTextNode(a.answer));
         answerList.appendChild(li);
     }
     form.appendChild(questionContainer);
     form.appendChild(answersContainer);
+    var submitContainer = document.createElement('div');
+    form.appendChild(submitContainer);
+    var submitBtn = document.createElement('input');
+    submitBtn.id= 'submit-btn';
+    submitBtn.type = 'submit';
+    submitBtn.class = 'form-submit';
+    submitContainer.appendChild(submitBtn);
 }
+
+function answerCallback(isCorrect) {
+  if(isCorrect) {
+    ++noCorrectAnswers;
+  }
+  showAnswerFeedback(isCorrect);
+  // goto nextquestion
+  getQuestion('/php/quiz/get.php', populateQuestion);
+}
+
+function showAnswerFeedback(isCorrect) {
+  var feedbackContainer = document.getElementById('feedback-container') || document.createElement('div');
+  feedbackContainer.id = 'feedback-container';
+  var feedbackText = '';
+  if (isCorrect)
+    feedbackText = "You answered correctly.";
+  else
+    feedbackText = "Wrong answer.";
+  feedbackContainer.innerHTML = '<p>' + feedbackText + '</p>';
+  var form = document.getElementById('quiz-form');
+  if (!document.getElementById('feedback-container'))
+    form.insertBefore(feedbackContainer);
+}
+
+var questionsSeen = [];
+var currentQuestionObject = null;
+var noCorrectAnswers = 0;
 
 removeJSDisabledMessages();
 getQuestion('/php/quiz/get.php', populateQuestion);
+var submitBtn = document.getElementById('submit-btn');
+submitBtn.addEventListener('click', function(e) {
+  e.preventDefault();
+  var form = document.getElementById('quiz-form');
+  var userQuizResponse = form.answer.value;
+  getCorrectAnswer(currentQuestionObject.id, userQuizResponse, answerCallback);
+});
