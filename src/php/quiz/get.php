@@ -22,7 +22,7 @@
     $question = $results[$random_number];
 
     $statement = $pdo->prepare(
-        "SELECT quizAnswers.id, answer
+        "SELECT quizAnswers.id, answer_image, answer_text
         FROM questionsanswers 
         JOIN quizAnswers ON questionsAnswers.aid=quizAnswers.id 
         WHERE questionsAnswers.qid=".$question['id']);
@@ -31,6 +31,11 @@
 
     $response = array();
     $response["question"] = $question;
+    
+    foreach ($answers as $answer) {
+        $answer["answer_image"] = "../../images/" . $answer["answer_image"];
+    }
+
     $response["answers"] = $answers;
     echo json_encode($response);
     
