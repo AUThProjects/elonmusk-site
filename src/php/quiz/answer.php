@@ -2,14 +2,14 @@
 
     include("../connect.php");
 
-    $queston_id = $_GET["questionId"];
+    $question_id = $_GET["questionId"];
     $answer = $_GET["answer"];
     
     $statement = $pdo->prepare(
         "SELECT correctAnswerId
         FROM quizQuestions
         WHERE id=:questionId");
-    $statement->bindParam(":question_id", $queston_id);
+    $statement->bindParam(":questionId", $question_id);
     $statement->execute();
 
     $correctAnswerId = $statement->fetch();
