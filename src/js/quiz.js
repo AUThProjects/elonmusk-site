@@ -91,6 +91,11 @@ function answerCallback(isCorrect) {
   // goto nextquestion
   getQuestion('/php/quiz/get.php', populateQuestion);
   showAnswerFeedback(isCorrect);
+
+  if (questionsSeen.length == 5) {
+    var form = document.getElementById('quiz-form');
+    form.innerHTML = '<p>End of the game. Found ' + noCorrectAnswers + ' correctly.</p>'
+  }
 }
 
 function showAnswerFeedback(isCorrect) {
