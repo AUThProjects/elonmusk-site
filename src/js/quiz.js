@@ -69,18 +69,17 @@ function populateQuestion(question, answers) {
     answersContainer = document.createElement('div');
     answersContainer.id = 'answers-container';
     for (a of answers) {
-        
+        var answerDiv = document.createElement('div');
+        answerDiv.className = 'answer';
         var inputElmnt = document.createElement('input');
         inputElmnt.type = 'radio';
         inputElmnt.name = 'answer';
         inputElmnt.value = a.id;
         inputElmnt.id = 'answer-' + a.id;
-
+        answerDiv.appendChild(inputElmnt);
         var labelElmnt = document.createElement('label');
         labelElmnt.setAttribute("for", inputElmnt.id);
-        labelElmnt.className ='answer';
-
-        labelElmnt.appendChild(inputElmnt);
+        answerDiv.appendChild(labelElmnt);
 
         var imgElmnt = document.createElement('img');
         imgElmnt.src = a.answer_image;
@@ -88,7 +87,7 @@ function populateQuestion(question, answers) {
         labelElmnt.appendChild(imgElmnt);
 
         // answerDiv.appendChild(document.createTextNode(a.answer_text));
-        answersContainer.appendChild(labelElmnt);
+        answersContainer.appendChild(answerDiv);
     }
     form.insertBefore(questionContainer, form.childNodes[0]);
     form.insertBefore(answersContainer, form.childNodes[1]);
