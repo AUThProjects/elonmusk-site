@@ -79,6 +79,7 @@ function populateQuestion(question, answers) {
         li.appendChild(inputElmnt);
         var imgElmnt = document.createElement('img');
         imgElmnt.src = a.answer_image;
+        imgElmnt.width = 200;
         li.appendChild(imgElmnt);
         li.appendChild(document.createTextNode(a.answer_text));
         answerList.appendChild(li);
