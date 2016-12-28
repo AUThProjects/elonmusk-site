@@ -88,9 +88,9 @@ function answerCallback(isCorrect) {
   if(isCorrect) {
     ++noCorrectAnswers;
   }
-  showAnswerFeedback(isCorrect);
   // goto nextquestion
   getQuestion('/php/quiz/get.php', populateQuestion);
+  showAnswerFeedback(isCorrect);
 }
 
 function showAnswerFeedback(isCorrect) {
