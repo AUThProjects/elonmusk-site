@@ -118,7 +118,7 @@ getQuestion('/php/quiz/get.php', function(question, answers) {
     submitBtn.addEventListener('click', function(e) {
       e.preventDefault();
       var userQuizResponse = form.answer.value;
-      getCorrectAnswer(currentQuestionObject.id, userQuizResponse, '/php/quiz/answer.php', answerCallback);
+      getCorrectAnswer(currentQuestionObject.question.id, userQuizResponse, '/php/quiz/answer.php', answerCallback);
     });
 
 }
