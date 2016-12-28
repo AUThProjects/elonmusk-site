@@ -75,9 +75,10 @@ function populateQuestion(question, answers) {
         inputElmnt.type = 'radio';
         inputElmnt.name = 'answer';
         inputElmnt.value = a.id;
+        inputElmnt.id = 'answer-' + a.id;
         answerDiv.appendChild(inputElmnt);
         var labelElmnt = document.createElement('label');
-        labelElmnt.setAttribute("for", "answer");
+        labelElmnt.setAttribute("for", inputElmnt.id);
         answerDiv.appendChild(labelElmnt);
 
         var imgElmnt = document.createElement('img');
