@@ -18,7 +18,7 @@ function getQuestion(url, callback) {
       }
     }
   };
-  if (questionsSeen.length)
+  if (questionsSeen.length > 0)
     xhttp.open("GET", url+'?questionsSeen='+questionsSeen.join(','), true);
   else
     xhttp.open("GET", url, true);
