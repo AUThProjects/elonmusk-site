@@ -10,7 +10,7 @@ function getQuestion(url, callback) {
       if (this.status == 200) {
         questionObj = JSON.parse(this.responseText);
         currentQuestionObject = questionObj;
-        questionsSeen.push(questionObj.id);
+        questionsSeen.push(questionObj.question.id);
         callback(questionObj.question.question, questionObj.answers);
       }
       else {
