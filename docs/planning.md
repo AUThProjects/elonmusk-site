@@ -7,12 +7,13 @@
 ## Endpoints
 
 ### /comments
-* /comments(/:page) GET
-* /comments/new POST
+* /php/comments/list(?limit=&page=).php GET
+* /php/comments/count.php GET
+* /php/comments/new.php POST
 
 ### /quiz
-* /quiz/questions/:listOfQuestionSeen GET
-* /quiz/questions/:questionId/answer GET
+* /php/quiz/get(?listOfQuestionSeen=).php GET
+* /php/quiz/answer?questionId=&answer=.php GET
 
 ## DB backend
 
