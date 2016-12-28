@@ -69,18 +69,18 @@ function populateQuestion(question, answers) {
     answersContainer = document.createElement('div');
     answersContainer.id = 'answers-container';
     for (a of answers) {
-        var answerDiv = document.createElement('div');
-        answerDiv.className = 'answer';
+        
+        var labelElmnt = document.createElement('label');
+        labelElmnt.setAttribute("for", inputElmnt.id);
+        labelElmnt.className ='answer';
+
         var inputElmnt = document.createElement('input');
         inputElmnt.type = 'radio';
         inputElmnt.name = 'answer';
         inputElmnt.value = a.id;
         inputElmnt.id = 'answer-' + a.id;
-        answerDiv.appendChild(inputElmnt);
-        var labelElmnt = document.createElement('label');
-        labelElmnt.setAttribute("for", inputElmnt.id);
-        answerDiv.appendChild(labelElmnt);
-
+        labelElmnt.appendChild(inputElmnt);
+        
         var imgElmnt = document.createElement('img');
         imgElmnt.src = a.answer_image;
         imgElmnt.width = 200;
