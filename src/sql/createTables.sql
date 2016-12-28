@@ -8,7 +8,7 @@ CREATE TABLE comments (
 CREATE TABLE quizQuestions (
   id serial primary key,
   question varchar(255) not null,
-  correctAnserId int not null
+  correctAnswerId int not null
 );
 
 CREATE TABLE quizAnswers (
