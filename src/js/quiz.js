@@ -73,4 +73,4 @@ function populateQuestion(question, answers) {
 }
 
 removeJSDisabledMessages();
-populateQuestion("One question", ['answer1', 'answer2', 'answer3', 'answer4']);
+getQuestion('/php/quiz/get.php', populateQuestion);
