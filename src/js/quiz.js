@@ -80,8 +80,8 @@ function populateQuestion(question, answers) {
         li.appendChild(document.createTextNode(a.answer));
         answerList.appendChild(li);
     }
-    form.appendChild(questionContainer);
-    form.appendChild(answersContainer);
+    form.insertBefore(questionContainer, form.childNodes[0]);
+    form.insertBefore(answersContainer, form.childNodes[1]);
 }
 
 function answerCallback(isCorrect) {
