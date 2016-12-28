@@ -32,11 +32,11 @@
     $response = array();
     $response["question"] = $question;
     
-    print_r($answers);
+    //print_r($answers);
 
-    // for ($i=0; i< 4; $i++) {
-    //     $answers[$i] = "../../images/" . $answers["answer_image"];
-    // }
+    for ($i=0; i< 4; $i++) {
+        $answers[$i]["answer_image"] = "../../images/" . $answers[$i]["answer_image"];
+    }
 
     $response["answers"] = $answers;
     echo json_encode($response);
