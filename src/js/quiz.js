@@ -77,13 +77,13 @@ function populateQuestion(question, answers) {
         inputElmnt.value = a.id;
         answerDiv.appendChild(inputElmnt);
         var labelElmnt = document.createElement('label');
-        answerDiv.appendChild(labelElement);
+        answerDiv.appendChild(labelElmnt);
 
         var imgElmnt = document.createElement('img');
         imgElmnt.src = a.answer_image;
         imgElmnt.width = 200;
         labelElmnt.appendChild(imgElmnt);
-        
+
         // answerDiv.appendChild(document.createTextNode(a.answer_text));
         answersContainer.appendChild(answerDiv);
     }
