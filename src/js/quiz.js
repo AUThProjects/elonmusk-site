@@ -10,7 +10,7 @@ function getQuestion(url, callback) {
       if (this.status == 200) {
         questionObj = JSON.parse(this.responseText);
         // TODO: Register the question object here.
-        callback(questionObj.question, questionObj.answers);
+        callback(questionObj.question.question, questionObj.answers.map(l => l.answer));
       }
       else {
         console.log('Some error happened while getting questions');
