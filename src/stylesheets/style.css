@@ -131,5 +131,9 @@ nav .nav-list-container {
 }
 
 #answers-container .answer {
-    width: 50%;
+    width: 47%;
+    text-align: center;
+    background: rgba(234, 234, 234, 0.9);
+    margin: 5px;
+    padding: 5px;
 }
