@@ -137,3 +137,7 @@ nav .nav-list-container {
     margin: 5px;
     padding: 5px;
 }
+
+input[type="radio"] {
+    display: none;
+}
