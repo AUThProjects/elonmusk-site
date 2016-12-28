@@ -70,6 +70,7 @@ function populateQuestion(question, answers) {
     answersContainer.id = 'answers-container';
     for (a of answers) {
         var answerDiv = document.createElement('div');
+        answerDiv.classList.push("answer");
         var inputElmnt = document.createElement('input');
         inputElmnt.type = 'radio';
         inputElmnt.name = 'answer';
