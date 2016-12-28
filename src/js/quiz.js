@@ -82,7 +82,6 @@ function populateQuestion(question, answers) {
     }
     form.appendChild(questionContainer);
     form.appendChild(answersContainer);
-  }
 }
 
 function answerCallback(isCorrect) {
