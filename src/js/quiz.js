@@ -68,21 +68,19 @@ function populateQuestion(question, answers) {
     questionContainer.innerHTML = '<h3>' + question + '</h3>';
     answersContainer = document.createElement('div');
     answersContainer.id = 'answers-container';
-    var answerList = document.createElement('ul');
-    answersContainer.appendChild(answerList);
     for (a of answers) {
-        var li = document.createElement('li');
+        var answerDiv = document.createElement('div');
         var inputElmnt = document.createElement('input');
         inputElmnt.type = 'radio';
         inputElmnt.name = 'answer';
         inputElmnt.value = a.id;
-        li.appendChild(inputElmnt);
+        answerDiv.appendChild(inputElmnt);
         var imgElmnt = document.createElement('img');
         imgElmnt.src = a.answer_image;
         imgElmnt.width = 200;
-        li.appendChild(imgElmnt);
-        li.appendChild(document.createTextNode(a.answer_text));
-        answerList.appendChild(li);
+        answerDiv.appendChild(imgElmnt);
+        // answerDiv.appendChild(document.createTextNode(a.answer_text));
+        answersContainer.appendChild(answerDiv);
     }
     form.insertBefore(questionContainer, form.childNodes[0]);
     form.insertBefore(answersContainer, form.childNodes[1]);

@@ -123,3 +123,13 @@ nav .nav-list-container {
   height: 10em;
   resize: none;
 }
+
+#answers-container {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+}
+
+#answers-container .answer {
+    width: 50%;
+}
