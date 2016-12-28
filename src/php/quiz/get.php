@@ -35,7 +35,7 @@
     //print_r($answers);
 
     for ($i=0; $i< 4; $i++) {
-        $answers[$i]["answer_image"] = "../../images/" . $answers[$i]["answer_image"];
+        $answers[$i]["answer_image"] = "../../../images/" . $answers[$i]["answer_image"];
     }
 
     $response["answers"] = $answers;
