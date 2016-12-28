@@ -77,6 +77,7 @@ function populateQuestion(question, answers) {
         inputElmnt.value = a.id;
         answerDiv.appendChild(inputElmnt);
         var labelElmnt = document.createElement('label');
+        labelElmnt.setAttribute("for", "answer");
         answerDiv.appendChild(labelElmnt);
 
         var imgElmnt = document.createElement('img');
