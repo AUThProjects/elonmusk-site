@@ -15,7 +15,7 @@
             FROM quizQuestions";
     }
 
-    $statement = $pdo->prepare();
+    $statement = $pdo->prepare($query);
     $statement->execute();
     $results = $statement->fetchAll();
     $random_number = rand(0, count($results) - 1);
