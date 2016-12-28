@@ -55,10 +55,18 @@ function getCorrectAnswer(questionId, userQuizResponse, url, callback) {
  */
 function populateQuestion(question, answers) {
     var form = document.getElementById('quiz-form');
-    var questionContainer = document.createElement('div');
+    var questionContainer = document.getElementById('question-container');
+    var answersContainer = document.getElementById('answers-container')
+    if (questionContainer) {
+      form.removeChild(questionContainer);
+    }
+    if (answersContainer) {
+      form.removeChild(answersContainer);
+    }
+    questionContainer = document.createElement('div');
     questionContainer.id = 'question-container';
     questionContainer.innerHTML = '<h3>' + question + '</h3>';
-    var answersContainer = document.createElement('div');
+    answersContainer = document.createElement('div');
     answersContainer.id = 'answers-container';
     var answerList = document.createElement('ul');
     answersContainer.appendChild(answerList);
@@ -74,7 +82,7 @@ function populateQuestion(question, answers) {
     }
     form.appendChild(questionContainer);
     form.appendChild(answersContainer);
-
+  }
 }
 
 function answerCallback(isCorrect) {
