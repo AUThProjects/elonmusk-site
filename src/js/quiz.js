@@ -74,13 +74,7 @@ function populateQuestion(question, answers) {
     }
     form.appendChild(questionContainer);
     form.appendChild(answersContainer);
-    var submitContainer = document.createElement('div');
-    form.appendChild(submitContainer);
-    var submitBtn = document.createElement('input');
-    submitBtn.id= 'submit-btn';
-    submitBtn.type = 'submit';
-    submitBtn.class = 'form-submit';
-    submitContainer.appendChild(submitBtn);
+
 }
 
 function answerCallback(isCorrect) {
@@ -111,11 +105,21 @@ var currentQuestionObject = null;
 var noCorrectAnswers = 0;
 
 removeJSDisabledMessages();
-getQuestion('/php/quiz/get.php', populateQuestion);
-var submitBtn = document.getElementById('submit-btn');
-submitBtn.addEventListener('click', function(e) {
-  e.preventDefault();
-  var form = document.getElementById('quiz-form');
-  var userQuizResponse = form.answer.value;
-  getCorrectAnswer(currentQuestionObject.id, userQuizResponse, answerCallback);
-});
+getQuestion('/php/quiz/get.php', function(question, answers) {
+    populateQuestion(question, answers);
+    var form = document.getElementById('quiz-form');
+    var submitContainer = document.createElement('div');
+    form.appendChild(submitContainer);
+    var submitBtn = document.createElement('input');
+    submitBtn.id= 'submit-btn';
+    submitBtn.type = 'submit';
+    submitBtn.class = 'form-submit';
+    submitContainer.appendChild(submitBtn);
+    submitBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var userQuizResponse = form.answer.value;
+      getCorrectAnswer(currentQuestionObject.id, userQuizResponse, answerCallback);
+    });
+
+}
+);
