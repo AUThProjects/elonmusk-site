@@ -77,7 +77,10 @@ function populateQuestion(question, answers) {
         inputElmnt.name = 'answer';
         inputElmnt.value = a.id;
         li.appendChild(inputElmnt);
-        li.appendChild(document.createTextNode(a.answer));
+        var imgElmnt = document.createElement('img');
+        imgElmnt.src = a.answer_image;
+        li.appendChild(imgElmnt);
+        li.appendChild(document.createTextNode(a.answer_text));
         answerList.appendChild(li);
     }
     form.insertBefore(questionContainer, form.childNodes[0]);
