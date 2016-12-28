@@ -25,7 +25,7 @@
         "SELECT quizAnswers.id, answer
         FROM questionsanswers 
         JOIN quizAnswers ON questionsAnswers.aid=quizAnswers.id 
-        WHERE questionsAnswers.qid=$question['id']");
+        WHERE questionsAnswers.qid=".$question['id']);
     $statement->execute();
     $answers = $statement->fetchAll();
 
