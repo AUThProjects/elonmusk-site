@@ -3,7 +3,7 @@
     include("../connect.php");
     
     header('Content-Type: application/json');
-    if (isset($_GET["questionsSeen"])) {
+    if (isset($_GET["questionsSeen"]) && strlen(trim($_GET["questionsSeen"]))!=0) {
         $questions_seen = $_GET["questionsSeen"];
         $questions_seen = trim($questions_seen);
 
