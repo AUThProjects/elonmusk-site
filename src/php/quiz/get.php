@@ -16,7 +16,7 @@
         
         $statement = $pdo->prepare($query);
         foreach ($questionIds as $k => $id) {
-            $stmt->bindValue(($k+1), $id);
+            $statement->bindValue(($k+1), $id);
         }
     }
     else {
