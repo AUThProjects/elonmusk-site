@@ -18,7 +18,6 @@
         foreach ($questionIds as $k => $id) {
             $statement->bindValue(($k+1), $id);
         }
-        print_r($statement->debugDumpParams());
     }
     else {
         $query = 
