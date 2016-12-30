@@ -5,5 +5,5 @@
       "SELECT count(*) as comments_count FROM comments");
   $statement->execute();
   $results = $statement->fetchAll();
-  echo json_encode($results);
+  echo json_encode($results[0]);
 ?>
