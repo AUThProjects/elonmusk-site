@@ -1,6 +1,7 @@
 <?php
   include("../connect.php");
 
+  header('Content-Type: application/json');
   $statement = $pdo->prepare(
       "SELECT count(*) as comments_count FROM comments");
   $statement->execute();
