@@ -37,12 +37,12 @@ function emailCheckCallback(e) {
 /**
  * Function getting the comments from the backend through AJAX call.
  * @param url: The url to which results are queried from.
+ * @param limit: Results per page.
  * @param offset: Offset of the results.
- * @param perPage: Results per page.
  * @param callback: The function to be called whne the AJAX call completes.
  * @return The comments returned from the backend.
  */
-function getComments(url, offset, perPage, callback) {
+function getComments(url, limit, offset, callback) {
 
   var comments = [
     // {emailAddress: "dummy@example.com", comment: "Some Comment"},
@@ -62,8 +62,7 @@ function getComments(url, offset, perPage, callback) {
       }
     }
   };
-  // xhttp.open("GET", url+"?"+perPage+'?'+offset, true);
-  xhttp.open("GET", url, true);
+  xhttp.open("GET", url+"?limit="+limit+'&offset='+offset, true);
   xhttp.send();
 
   return comments;
@@ -99,20 +98,17 @@ function createCommentsTable(comments) {
 }
 
 function createPaginationNavigation(totalCountOfComments) {
-  var limit = 5;
+  var limit = 10;
   var numberOfPages = totalCountOfComments/limit;
   var paginationList = document.createElement('ul');
-  var previousPage = document.createElement('li');
-  previousPage.innerHTML = '<a href="#">&laquo;</a>';
-  paginationList.appendChild(previousPage);
   for (i=1;i< numberOfPages;++i) {
     var page = document.createElement('li');
-    page.innerHTML = '<a href="#">i</a>';
+    page.innerHTML = '<a href="#">'+i+'</a>';
     paginationList.appendChild(page);
+    page.addEventListener('click', function(){
+      getComments('/php/comments/list.php', 10, i-1, displayComments);
+    }, true)
   }
-  var nextPage = document.createElement('li');
-  nextPage.innerHTML = '<a href="#">&raquo;</a>';
-  paginationList.appendChild(nextPage);
   var commentsContainer = document.getElementById('comments-list-container');
   commentsContainer.appendChild(paginationList);
 }
@@ -207,7 +203,7 @@ var submitButton = document.getElementById('submit-comment-btn');
 submitButton.addEventListener('click', submitListenerCallback, false);
 
 // Populate the comments section
-getComments('/php/comments/list.php', null, null, displayComments);
+getComments('/php/comments/list.php', 10, 0, displayComments);
 
 // Create the pagination nav
 getCommentsCount('/php/comments/count.php', createPaginationNavigation);
