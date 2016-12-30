@@ -103,15 +103,15 @@ function createPaginationNavigation(totalCountOfComments) {
   var numberOfPages = totalCountOfComments/limit;
   var paginationList = document.createElement('ul');
   var previousPage = document.createElement('li');
-  previousPage.innerHTML = "<a href="#">&laquo;</a>";
+  previousPage.innerHTML = '<a href="#">&laquo;</a>';
   paginationList.appendChild(previousPage);
   for (i=1;i< numberOfPages;++i) {
     var page = document.createElement('li');
-    page.innerHTML = "<a href="#">i</a>";
+    page.innerHTML = '<a href="#">i</a>';
     paginationList.appendChild(page);
   }
   var nextPage = document.createElement('li');
-  var nextPage.innerHTML = "<a href="#">&raquo;</a>";
+  nextPage.innerHTML = '<a href="#">&raquo;</a>';
   paginationList.appendChild(nextPage);
   var commentsContainer = document.getElementById('comments-list-container');
   commentsContainer.appendChild(paginationList);
