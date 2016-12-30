@@ -4,7 +4,7 @@
     header('Content-Type: application/json');
     $emailRegex = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
 
-    if (isset($_POST["email"])) {
+    if (isset($_POST["email"]) && strlen(trim($_POST["email"]))!=0) {
         $email = $_POST["email"];
         if (preg_match($emailRegex, $email) != 1) {
             $result = array();
