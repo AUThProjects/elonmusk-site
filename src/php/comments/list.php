@@ -5,7 +5,7 @@
     $offset = $_GET['offset'];
 
     $statement = $pdo->prepare(
-        "SELECT * FROM comments LIMIT :limit OFFSET :offset");
+        "SELECT * FROM comments ORDER BY id DESC LIMIT :limit OFFSET :offset");
     $statement->bindParam(":limit", $limit);
     $statement->bindParam(":offset", $offset);
     $statement->execute();
