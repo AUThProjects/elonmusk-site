@@ -12,12 +12,13 @@
         $query = 
             "SELECT id, question
             FROM quizQuestions 
-            WHERE id NOT IN (" . $questions_seen .")";
+            WHERE id NOT IN (" . $inQuery .")";
         
         $statement = $pdo->prepare($query);
         foreach ($questionIds as $k => $id) {
             $statement->bindValue(($k+1), $id);
         }
+        print_r($statement->debugDumpParams());
     }
     else {
         $query = 
