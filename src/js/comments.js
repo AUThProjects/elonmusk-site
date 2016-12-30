@@ -99,14 +99,15 @@ function createCommentsTable(comments) {
 
 function createPaginationNavigation(totalCountOfComments) {
   var limit = 10;
-  var numberOfPages = totalCountOfComments/limit;
+  var numberOfPages = totalCountOfComments/limit+1;
   var paginationList = document.createElement('ul');
-  for (i=1;i< numberOfPages;++i) {
+  for (i=1;i<=numberOfPages;++i) {
     var page = document.createElement('li');
+    page.id = i;
     page.innerHTML = '<a href="#">'+i+'</a>';
     paginationList.appendChild(page);
     page.addEventListener('click', function(){
-      getComments('/php/comments/list.php', limit, (i-1)*limit, displayComments);
+      getComments('/php/comments/list.php', limit, (this.id-1)*limit, displayComments);
     }, true)
   }
   var commentsContainer = document.getElementById('comments-list-container');
