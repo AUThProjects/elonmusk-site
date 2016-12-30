@@ -98,6 +98,40 @@ function createCommentsTable(comments) {
   return commentsTable;
 }
 
+function createPaginationNavigation(totalCountOfComments) {
+  var limit = 5;
+  var numberOfPages = totalCountOfComments/limit;
+  var paginationList = document.createElement('ul');
+  var previousPage = document.createElement('li');
+  previousPage.innerHTML = "<a href="#">&laquo;</a>";
+  paginationList.appendChild(previousPage);
+  for (i=1;i< numberOfPages;++i) {
+    var page = document.createElement('li');
+    page.innerHTML = "<a href="#">i</a>";
+    paginationList.appendChild(page);
+  }
+  var nextPage = document.createElement('li');
+  var nextPage.innerHTML = "<a href="#">&raquo;</a>";
+  paginationList.appendChild(nextPage);
+  var commentsContainer = document.getElementById('comments-list-container');
+  commentsContainer.appendChild(paginationList);
+}
+
+function getCommentsCount(url, callback) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == XMLHttpRequest.DONE) {
+      if (this.status == 200) {
+        numberOfComments = JSON.parse(this.responseText).comments_count;
+        callback(numberOfComments);
+      }
+    }
+  };
+  // xhttp.open("GET", url+"?"+perPage+'?'+offset, true);
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
+
 /**
  * Function displaying the comments or equivalent message if no comments available.
  * @param comments: An array of comment objects to show.
@@ -160,6 +194,8 @@ function submitListenerCallback(e) {
 // Remove JS disabled messages.
 removeJSDisabledMessages();
 
+var currentPage = 1;
+
 // Register email validator listener
 var emailInputs = document.getElementsByClassName('email-input');
 for (emailInput of emailInputs) {
@@ -172,3 +208,6 @@ submitButton.addEventListener('click', submitListenerCallback, false);
 
 // Populate the comments section
 getComments('/php/comments/list.php', null, null, displayComments);
+
+// Create the pagination nav
+getCommentsCount('/php/comments/count.php', createPaginationNavigation);
