@@ -7,17 +7,22 @@
         $questions_seen = $_GET["questionsSeen"];
         $questions_seen = trim($questions_seen);
 
+        $questionIds = explode(',', $questions_seen);
+        $inQuery = implode(',', array_fill(0, count($questionIds), '?'));
         $query = 
             "SELECT id, question
             FROM quizQuestions 
-            WHERE id NOT IN (:questions_seen)";
+            WHERE id NOT IN (" . $questions_seen .")";
+        
         $statement = $pdo->prepare($query);
-        $statement->bindParam(":questions_seen", $questions_seen);
+        foreach ($questionIds as $k => $id) {
+            $stmt->bindValue(($k+1), $id);
+        }
     }
     else {
         $query = 
             "SELECT id, question
-            FROM quizQuestions";
+            FROM quizQuestions";    
         $statement = $pdo->prepare($query);
     }
     $statement->execute();
