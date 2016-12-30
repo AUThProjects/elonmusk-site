@@ -106,7 +106,7 @@ function createPaginationNavigation(totalCountOfComments) {
     page.innerHTML = '<a href="#">'+i+'</a>';
     paginationList.appendChild(page);
     page.addEventListener('click', function(){
-      getComments('/php/comments/list.php', 10, i-1, displayComments);
+      getComments('/php/comments/list.php', limit, (i-1)*limit, displayComments);
     }, true)
   }
   var commentsContainer = document.getElementById('comments-list-container');
