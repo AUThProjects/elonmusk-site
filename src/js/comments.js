@@ -99,8 +99,14 @@ function createCommentsTable(comments) {
 
 function createPaginationNavigation(totalCountOfComments) {
   var limit = 10;
-  var numberOfPages = totalCountOfComments/limit+1;
-  var paginationList = document.createElement('ul');
+  var numberOfPages = Math.ceil(totalCountOfComments/limit);
+  var paginationList = document.getElementById('pagination-list');
+  var commentsContainer = document.getElementById('comments-list-container');
+  if (paginationList) {
+      commentsContainer.removeChild(paginationList);
+  }
+  paginationList = document.createElement('ul');
+  paginationList.id = 'pagination-list';
   for (i=1;i<=numberOfPages;++i) {
     var page = document.createElement('li');
     page.id = i;
@@ -184,14 +190,15 @@ function submitListenerCallback(e) {
   e.preventDefault();
   // Check form related data
   var form = document.getElementById("comments-form");
-  submitNewComment(new FormData(form), '/php/comments/new.php', function() { getComments('/php/comments/list.php', null, null, displayComments); });
+  submitNewComment(new FormData(form), '/php/comments/new.php', function() {
+    getComments('/php/comments/list.php', 10, 0, displayComments);
+    getCommentsCount('/php/comments/count.php', createPaginationNavigation);
+  });
   form.reset();
 }
 
 // Remove JS disabled messages.
 removeJSDisabledMessages();
-
-var currentPage = 1;
 
 // Register email validator listener
 var emailInputs = document.getElementsByClassName('email-input');
