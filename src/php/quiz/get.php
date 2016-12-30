@@ -22,7 +22,7 @@
     }
     $statement->execute();
     $results = $statement->fetchAll();
-    $resultsSize = count($result);
+    $resultsSize = count($results);
     if ($resultsSize == 0) {
         $result = array();
         $result["error"] = "No questions left";
