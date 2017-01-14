@@ -124,6 +124,10 @@ nav .nav-list-container {
   resize: none;
 }
 
+#quiz-form {
+    margin: 10px 0;
+}
+
 #answers-container {
     display: flex;
     width: 100%;
