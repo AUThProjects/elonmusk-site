@@ -142,6 +142,12 @@ function getCommentsCount(url, callback) {
 function displayComments(comments) {
   // document.getElementById('comments-js-disabled').remove();
   if (comments.length) {
+    var listContainer = document.getElementById('comments-list-container');
+    var emptyListElmnt = document.getElementById("empty-list");
+    if (emptyListElmnt) {
+      listContainer.removeChild(listContainer);
+    }
+
     var commentsTable = createCommentsTable(comments);
     var existentCommentsTable = document.getElementById('comments-table');
     if (existentCommentsTable) {
