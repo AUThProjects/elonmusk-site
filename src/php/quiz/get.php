@@ -55,7 +55,7 @@
         list($width, $height) = getimagesize($answers[$i]["answer_image"]);
 
         $pieces = explode(".", $answers[$i]["answer_image"]);
-        $answers[$i]["answer_width"] = $pieces[len($pieces) - 1] == "svg"? "300" : $width;
+        $answers[$i]["answer_width"] = $pieces[count($pieces) - 1] == "svg"? "300" : $width;
         $answers[$i]["answer_height"] = $height;
     }
 
