@@ -56,7 +56,7 @@
 
         $pieces = explode(".", $answers[$i]["answer_image"]);
         $answers[$i]["answer_width"] = $pieces[count($pieces) - 1] == "svg"? "300" : $width;
-        $answers[$i]["answer_height"] = $height;
+        $answers[$i]["answer_height"] = $pieces[count($pieces) - 1] == "svg"? "300" : $height;
     }
 
     $response["answers"] = $answers;
