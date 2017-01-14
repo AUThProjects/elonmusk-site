@@ -1,8 +1,8 @@
-# Elon Musk Static
+# Elon Musk Dynamic
 
 ## Description
 
-A static web page about Elon Musk as an assignment of WWW Informational Systems of the CS department of Aristotle University of Thessaloniki
+A dynamic web page about Elon Musk as an assignment of WWW Informational Systems of the CS department of Aristotle University of Thessaloniki
 
 ## Team
 
@@ -13,8 +13,8 @@ A static web page about Elon Musk as an assignment of WWW Informational Systems 
 
 ## Deployment
 
-The website is deployed on Github pages @ [https://authprojects.github.io/elonmusk-static/](https://authprojects.github.io/elonmusk-static/)
+The website is deployed on an academic ~okeanos VMs @ [http://snf-727663.vm.okeanos.grnet.gr/](http://snf-727663.vm.okeanos.grnet.gr/)
 
 ## Source
 
-The website source code is available for download here: [https://github.com/AUThProjects/elonmusk-static/archive/master.zip](https://github.com/AUThProjects/elonmusk-static/archive/master.zip)
+The website source code is available for download here: [https://github.com/AUThProjects/elonmusk-site/archive/master.zip](https://github.com/AUThProjects/elonmusk-site/archive/master.zip)
