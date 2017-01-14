@@ -83,7 +83,9 @@ function populateQuestion(question, answers) {
 
         var imgElmnt = document.createElement('img');
         imgElmnt.src = a.answer_image;
-        imgElmnt.width = 200;
+        imgElmnt.width = a.answer_width;
+        imgElmnt.height = a.answer_height;
+        imgElmnt.alt = a.answer_text;
         labelElmnt.appendChild(imgElmnt);
 
         // answerDiv.appendChild(document.createTextNode(a.answer_text));
