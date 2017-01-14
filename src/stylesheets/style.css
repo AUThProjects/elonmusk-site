@@ -151,6 +151,11 @@ label {
   font-size: 13px;
 }
 
+label img {
+    max-height: 350px;
+    max-width: 350px;
+}
+
 label:before {
   content: "";
   display: inline-block;
