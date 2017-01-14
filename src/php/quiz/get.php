@@ -52,6 +52,9 @@
     $answerSize = count($answers);
     for ($i=0; $i < $answerSize; $i++) {
         $answers[$i]["answer_image"] = "../../images/quiz/" . $answers[$i]["answer_image"];
+        list($width, $height) = getimagesize($answers[$i]["answer_image"]);
+        $answers[$i]["answer_width"] = $width;
+        $answers[$i]["answer_height"] = $height;
     }
 
     $response["answers"] = $answers;
