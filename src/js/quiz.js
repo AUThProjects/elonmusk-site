@@ -91,10 +91,8 @@ function populateQuestion(question, answers) {
         // answerDiv.appendChild(document.createTextNode(a.answer_text));
         answersContainer.appendChild(answerDiv);
     }
-    form.appendChild(questionContainer);
-    form.appendChild(answersContainer);
-    // form.insertBefore(, form.childNodes[form.childNodes.length - 1]);
-    // form.insertBefore(answersContainer, form.childNodes[1]);
+    form.insertBefore(questionContainer, form.childNodes[0]);
+    form.insertBefore(answersContainer, form.childNodes[1]);
 }
 
 function answerCallback(isCorrect) {
