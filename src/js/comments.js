@@ -145,7 +145,7 @@ function displayComments(comments) {
     var listContainer = document.getElementById('comments-list-container');
     var emptyListElmnt = document.getElementById("empty-list");
     if (emptyListElmnt) {
-      listContainer.removeChild(listContainer);
+      listContainer.removeChild(emptyListElmnt);
     }
 
     var commentsTable = createCommentsTable(comments);
